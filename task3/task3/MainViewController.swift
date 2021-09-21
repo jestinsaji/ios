@@ -33,7 +33,7 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         vc.title = "New Contact"
         vc.completion = { Name,Address,Number,Role,switchOnIndex in
             self.navigationController?.popToRootViewController(animated: true)
-            self.models.append((Name: Name, Address: Address, Number: Number, Role: Role, switchOnIndex:true))
+            self.models.append((Name: Name, Address: Address, Number: Number, Role: Role, switchOnIndex:switchOnIndex))
             self.mySwitch.isHidden = true
             self.label.isHidden = true
             self.table.isHidden = false
@@ -49,6 +49,7 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
         cell.textLabel?.text = models[indexPath.row].Address
         cell.textLabel?.text = models[indexPath.row].Number
         cell.textLabel?.text = models[indexPath.row].Role
@@ -57,13 +58,12 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         //switch
         
         let mySwitch = UISwitch(frame: .zero)
-        mySwitch.setOn(true, animated: true)
+        mySwitch.setOn(models[indexPath.row].switchOnIndex, animated: true)
         mySwitch.tag = indexPath.row
         mySwitch.onTintColor = UIColor.red
         mySwitch.thumbTintColor = UIColor.green
         mySwitch.addTarget(self, action: #selector (switchValueDidChange), for: .valueChanged)
         cell.accessoryView = mySwitch
-
         return cell
     }
     
