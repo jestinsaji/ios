@@ -14,6 +14,8 @@ class DataDisplayViewController: UIViewController {
     @IBOutlet var phone: UILabel!
     @IBOutlet var roleof: UILabel!
     @IBOutlet var avatar: UIImageView!
+    @IBOutlet var scrollView: UIScrollView!
+    
     
     public var Name:String = ""
     public var Address: String = ""
@@ -37,6 +39,8 @@ class DataDisplayViewController: UIViewController {
         phone.text = NumberField
         roleof.text = RoleField
         
+        //scrollView.contentSize = CGSize(width: 640, height: 800)
+
      
         if isSwitchSelected == true {
             view.backgroundColor = UIColor.green
